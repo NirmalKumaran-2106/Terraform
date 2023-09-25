@@ -1,8 +1,8 @@
 resource "aws_instance" "trial" {
-    ami = "ami-067c21fb1979f0b27"
-    instance_type = "t2.micro"
+    ami = "var.ami"
+    instance_type = "var.instance_type"
     key_name = "keys"
     tags = {
-        Name = "trialinstance"
+        Name = "var.tagname"
     }
 }
