@@ -2,7 +2,7 @@ variable "instance_type" {
     type = string
     default = "t2.micro"
 }
-variable "security_groups" {
+variable "security_group" {
     type = string
     default = "sg-0715215d2df1a5a75"
 }

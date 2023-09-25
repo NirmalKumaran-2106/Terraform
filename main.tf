@@ -2,7 +2,7 @@ resource "aws_instance" "Terraform_Servers" {
     ami = "var.ami"
     instance_type = "var.instance_type"
     subnet_id = "var.subnet_id"
-    security_groups = "var.security_groups"
+    security_groups = "var.security_group"
     key_name = "keys"
     tags = {
         Name = "Ansible"
