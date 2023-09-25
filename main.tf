@@ -7,5 +7,6 @@ resource "aws_instance" "Server" {
     key_name = "keys"
     tags = {
         Name = "Terraform_Created_Instance"
+
     } 
 }
