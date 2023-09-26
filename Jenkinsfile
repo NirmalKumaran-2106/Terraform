@@ -11,23 +11,17 @@ pipeline {
         stage('Terraform Init') {
             steps {
                     sh ' terraform init'
-                    //def initOutput = sh(script: 'terraform init 2>&1 | tee terraform_init_output.log', returnStdout: true).trim()
-                    //echo "Terraform Init Output:\n${initOutput}"
             }
         }
         stage('Terraform Plan') {
             steps {
                 sh 'terraform plan'
-                //def planOutput = sh(script: 'terraform plan 2>&1 | tee terraform_plan_output.log', returnStdout: true).trim()
-                //echo "Terraform Plan Output:\n${planOutput}"
             }
             
         }
         stage('Terraform Apply') {
             steps {
                 sh 'terraform apply -auto-approve'
-                //def applyOutput = sh(script: 'terraform apply -auto-approve 2>&1 | tee terraform_apply_output.log', returnStdout: true).trim()
-                //echo "Terraform Apply Output:\n${applyOutput}"
             }    
         }
     }
