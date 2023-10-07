@@ -1,5 +1,5 @@
 resource "aws_instance" "trial" {
-    count = 3
+    count = 1
     ami = "ami-03d294e37a4820c21"
     instance_type = "t2.micro"
     key_name = "Dev--Ops"
