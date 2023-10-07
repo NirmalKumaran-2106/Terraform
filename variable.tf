@@ -6,9 +6,6 @@ variable "instance_type" {
     type = string
     default = "t2.micro"
 }
-variable "count" {
-    default = 3
-}
 variable "Name" {
     type = string
     default = "TrialInstance"
