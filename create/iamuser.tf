@@ -6,7 +6,7 @@ resource "aws_iam_group" "createiamgroup" {
 }
 resource "aws_iam_group_policy" "iamgrouppolicy" {
     name = "Terraform-GroupPolicy"
-    group = [aws_iam_group.createiamgroup.name]
+    group = aws_iam_group.createiamgroup.name
     policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
@@ -45,5 +45,5 @@ resource "aws_iam_role" "createrole" {
 }
 resource "aws_iam_group_policy_attachment" "Policy-Attachment" {
     policy_arn = aws_iam_policy.policy_arn   
-    group = [aws_iam_group.createiamgroup.name]
+    group = aws_iam_group.createiamgroup.name
 }
