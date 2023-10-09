@@ -44,9 +44,6 @@ resource "aws_iam_role" "createrole" {
   })
 }
 resource "aws_iam_group_policy_attachment" "Policy-Attachment" {
-    name = "Terraform-attachment"
-    policy_arn = aws_iam_policy.policy_arn
-    users = [aws_iam_user.createiamuser.name]
-    roles = [aws_iam_role.createrole]   
-    groups = [aws_iam_group.createiamgroup.name]
+    policy_arn = aws_iam_policy.policy_arn   
+    group = [aws_iam_group.createiamgroup.name]
 }
