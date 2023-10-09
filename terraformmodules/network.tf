@@ -9,7 +9,7 @@ resource "aws_vpc" "network-vpc" {
 resource "aws_subnet" "network-subnet" {
     vpc_id = aws_vpc.network-vpc.id
     cidr_block = "10.0.1.0/24"
-    availability_zone = "ap-south-1"
+    availability_zone = "ap-south-1a"
     tags = {
       Name = "terraform-subnet"
     }
@@ -42,7 +42,7 @@ resource "aws_security_group" "network-securitygroup" {
     }
     ingress {
         from_port = 0
-        to_port = 65535
+        to_port = 0
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
