@@ -1,3 +1,3 @@
 module "create-terraform" {
-  source = "./create"
+  source = "./terraformmodules"
 }
