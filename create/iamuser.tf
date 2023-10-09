@@ -44,6 +44,6 @@ resource "aws_iam_role" "createrole" {
   })
 }
 resource "aws_iam_group_policy_attachment" "Policy-Attachment" {
-    policy_arn = aws_iam_policy.policy_arn   
+    policy_arn = aws_iam_group_policy.iamgrouppolicy.arn   
     group = aws_iam_group.createiamgroup.name
 }
