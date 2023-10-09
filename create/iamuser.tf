@@ -4,9 +4,12 @@ resource "aws_iam_user" "createiamuser" {
 resource "aws_iam_group" "createiamgroup" {
     name = "Terraform-DevOps"
 }
-resource "aws_iam_group_policy" "iamgrouppolicy" {
-    name = "Terraform-GroupPolicy"
-    group = aws_iam_group.createiamgroup.name
+resource "aws_iam_user_group_membership" "group-membership" {
+  user = aws_iam_user.createiamuser.name
+  groups = aws_iam_group.createiamgroup.name
+}
+resource "aws_iam_policy" "iampolicy" {
+    name = "Terraform-Policy"
     policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
@@ -43,7 +46,9 @@ resource "aws_iam_role" "createrole" {
     ]
   })
 }
-resource "aws_iam_group_policy_attachment" "Policy-Attachment" {
-    policy_arn = aws_iam_group_policy.iamgrouppolicy.arn   
-    group = aws_iam_group.createiamgroup.name
+resource "aws_iam_policy_attachment" "Policy-Attachment" {
+  name = "PolicyAttachment"
+  policy_arn = aws_iam_policy.iampolicy.arn   
+  users = aws_iam_user.createiamuser.name
+  roles = aws_iam_role.createrole.name
 }
