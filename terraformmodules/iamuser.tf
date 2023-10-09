@@ -6,7 +6,7 @@ resource "aws_iam_group" "createiamgroup" {
 }
 resource "aws_iam_user_group_membership" "group-membership" {
   user = aws_iam_user.createiamuser.name
-  groups = aws_iam_group.createiamgroup.name
+  groups = [aws_iam_group.createiamgroup.name]
 }
 resource "aws_iam_policy" "iampolicy" {
     name = "Terraform-Policy"
@@ -49,6 +49,6 @@ resource "aws_iam_role" "createrole" {
 resource "aws_iam_policy_attachment" "Policy-Attachment" {
   name = "PolicyAttachment"
   policy_arn = aws_iam_policy.iampolicy.arn   
-  users = aws_iam_user.createiamuser.name
-  roles = aws_iam_role.createrole.name
+  users = [aws_iam_user.createiamuser.name]
+  roles = [aws_iam_role.createrole.name]
 }
