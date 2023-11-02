@@ -6,7 +6,11 @@ variable "instance_type" {
     type = string
     default = "t2.micro"
 }
-variable "Name" {
-    type = string
-    default = "TrialInstance"
+variable "countnum" {
+    type = number
+    default = 1
+}
+variable "volumesize" {
+    type = number
+    default = 29
 }
