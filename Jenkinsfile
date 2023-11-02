@@ -2,6 +2,10 @@ pipeline {
     agent {
         label 'Terraform'
     }
+    parameters {
+        choice(name: 'Create', choices: ['YES', 'NO'], description: 'Do you need to Create the service?')
+        choice(name: 'Destroy', choices: ['YES', 'NO'], description: 'Do you need to Destroy the service?')
+    }
     stages {
         stage('Source Code') {
             steps {
@@ -20,11 +24,17 @@ pipeline {
             
         }
         stage('Terraform Apply') {
+            when {
+                expression { params.Create == 'YES' }
+            }
             steps {
                 sh 'terraform apply -auto-approve'
             }    
         }
         stage('Terraform Destroy') {
+            when {
+                expression { params.Destroy == 'YES' }
+            }
             steps {
                 sh 'terraform destroy'
             }    
