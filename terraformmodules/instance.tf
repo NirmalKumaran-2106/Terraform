@@ -2,7 +2,7 @@ resource "aws_instance" "terraform_slave" {
     count = var.countnum
     ami = var.ami
     instance_type = var.instance_type
-    key_name = "Dev--Ops"
+    key_name = var.keyname
     ebs_block_device {
     device_name           = "/dev/xvda"
     volume_size           = var.volumesize
@@ -17,6 +17,7 @@ resource "aws_instance" "terraform_slave" {
         type = "ssh"
         user = "ec2-user"
         host = self.public_ip
+        private_key = file("./terraformkey.pem")
       }
       inline = [ "sudo yum update -y",
         "sudo yum install git -y",
@@ -31,7 +32,7 @@ resource "aws_instance" "jenkins_master" {
     count = var.countnum
     ami = var.ami
     instance_type = var.instance_type
-    key_name = "Dev--Ops"
+    key_name = var.keyname
     ebs_block_device {
     device_name           = "/dev/xvda"
     volume_size           = var.volumesize
@@ -46,6 +47,7 @@ resource "aws_instance" "jenkins_master" {
         type = "ssh"
         user = "ec2-user"
         host = self.public_ip
+        private_key = file("./terraformkey.pem")
       }
       inline = [ "sudo yum update -y",
         "sudo yum install git -y",
@@ -60,7 +62,7 @@ resource "aws_instance" "ansible_master" {
     count = var.countnum
     ami = var.ami
     instance_type = var.instance_type
-    key_name = "Dev--Ops"
+    key_name = var.keyname
     ebs_block_device {
     device_name           = "/dev/xvda"
     volume_size           = var.volumesize
@@ -75,6 +77,7 @@ resource "aws_instance" "ansible_master" {
         type = "ssh"
         user = "ec2-user"
         host = self.public_ip
+        private_key = file("./terraformkey.pem")
       }
       inline = [ "sudo yum update -y",
         "sudo yum install git -y", //Installing GIT

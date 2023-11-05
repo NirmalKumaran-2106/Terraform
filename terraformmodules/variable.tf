@@ -14,3 +14,7 @@ variable "volumesize" {
     type = number
     default = 29
 }
+variable "keyname" {
+    type = string
+    default = "terraformkey"
+}
